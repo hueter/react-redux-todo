@@ -8,24 +8,26 @@ const ListStyle = styled.li`
   border-bottom: 1px solid #e4e4e4;
   list-style: none;
 
+  text-decoration: ${props => (props.applied ? 'line-through' : 'none')};
+
   .hover: {
     cursor: pointer;
   }
 `;
 
+const NameStyle = styled.span`
+  margin-left: 20px;
+`;
+
 const ToDo = props => (
-  <ListStyle
-    style={{
-      textDecoration: props.applied ? 'line-through' : 'none'
-    }}
-  >
+  <ListStyle applied={props.applied}>
     <input
       type="checkbox"
       value={props.name}
       checked={props.applied}
       onChange={props.toggleTodo}
     />
-    <span style={{ marginLeft: '20px' }}> {props.name} </span>
+    <NameStyle> {props.name} </NameStyle>
   </ListStyle>
 );
 

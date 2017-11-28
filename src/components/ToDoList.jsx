@@ -1,6 +1,20 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import ToDo from './ToDo';
 import { fetchTodos } from '../services/api';
+
+const ContainerStyle = styled.div`
+  width: 300px;
+  margin: auto;
+  text-align: left;
+  border-left: 1px solid #e4e4e4;
+  border-right: 1px solid #e4e4e4;
+  border-top: 1px solid #e4e4e4;
+`;
+
+const HeaderStyle = styled.h2`
+  text-align: center;
+`;
 
 class ToDoList extends Component {
   constructor(props) {
@@ -32,16 +46,7 @@ class ToDoList extends Component {
 
   render() {
     const companies = (
-      <div
-        style={{
-          width: '300px',
-          margin: 'auto',
-          textAlign: 'left',
-          borderLeft: '1px solid #e4e4e4',
-          borderRight: '1px solid #e4e4e4',
-          borderTop: '1px solid #e4e4e4'
-        }}
-      >
+      <ContainerStyle>
         {this.state.todos.map(todo => (
           <ToDo
             toggleTodo={this.toggleTodo.bind(this, todo.id)}
@@ -49,11 +54,11 @@ class ToDoList extends Component {
             {...todo}
           />
         ))}
-      </div>
+      </ContainerStyle>
     );
     return (
       <div>
-        <h2> Companies </h2>
+        <HeaderStyle> Companies </HeaderStyle>
         {this.state.loading ? 'loading...' : companies}
       </div>
     );
