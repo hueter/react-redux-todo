@@ -1,13 +1,17 @@
 import mockData from './data.json';
 
-export async function fetchTodos() {
-  await setTimeout(() => {
-    return mockData;
-  }, Math.floor(Math.random() * 2000));
+export function fetchTodos() {
+  return new Promise(resolve => {
+    return setTimeout(() => {
+      return resolve(mockData.data);
+    }, Math.floor(Math.random() * (1000 - 300))) + 300;
+  });
 }
 
-export async function fetchTodo(id) {
-  await setTimeout(() => {
-    return mockData.filter(todo => todo.id === id)[0];
-  }, Math.floor(Math.random() * 2000));
+export function fetchTodo(id) {
+  return new Promise(resolve => {
+    return setTimeout(() => {
+      return resolve(mockData.data.filter(todo => todo.id === id)[0]);
+    }, Math.floor(Math.random() * (700 - 100))) + 100;
+  });
 }
