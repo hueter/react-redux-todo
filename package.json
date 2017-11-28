@@ -1,5 +1,5 @@
 {
-  "name": "react-redux-weather",
+  "name": "react-redux-todo",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
