@@ -3,20 +3,24 @@ import styled from 'styled-components';
 
 const ListStyle = styled.li`
   padding: 5px;
-  margin-bottom: 5px;
-
+  border-left: 1px solid #e4e4e4;
+  border-right: 1px solid #e4e4e4;
   border-bottom: 1px solid #e4e4e4;
   list-style: none;
 
   text-decoration: ${props => (props.applied ? 'line-through' : 'none')};
-
-  .hover: {
-    cursor: pointer;
-  }
 `;
 
 const NameStyle = styled.span`
   margin-left: 20px;
+`;
+
+const XStyle = styled.div`
+  float: right;
+  :hover {
+    color: red;
+    cursor: pointer;
+  }
 `;
 
 const ToDo = props => (
@@ -28,6 +32,7 @@ const ToDo = props => (
       onChange={props.toggleTodo}
     />
     <NameStyle> {props.name} </NameStyle>
+    <XStyle onClick={props.removeTodo}>✘</XStyle>
   </ListStyle>
 );
 
