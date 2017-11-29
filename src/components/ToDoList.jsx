@@ -31,10 +31,19 @@ class ToDoList extends Component {
   }
 
   async componentWillMount() {
+    // before component renders, fetch todos first
     await this.props.fetchTodos();
     this.setState({
       loading: false
     });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // if we've added a todo, reset the newTodo form
+    if (this.props.todos.length < nextProps.todos.length)
+      this.setState({
+        newTodo: ''
+      });
   }
 
   handleChange(e) {

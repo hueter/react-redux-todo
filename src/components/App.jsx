@@ -1,10 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ToDoListContainer from '../containers/ToDoListContainer';
 
-class App extends Component {
-  render() {
-    return <ToDoListContainer />;
-  }
-}
-
+const App = props => <ToDoListContainer />;
 export default App;
