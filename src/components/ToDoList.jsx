@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import AddToDo from './AddToDo';
 import ToDo from './ToDo';
-import { fetchTodos } from '../services/api';
 import uuidv4 from 'uuid/v4';
 
 const ContainerStyle = styled.div`
@@ -24,7 +23,6 @@ class ToDoList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: [],
       loading: true,
       newTodo: ''
     };
@@ -33,9 +31,8 @@ class ToDoList extends Component {
   }
 
   async componentWillMount() {
-    const todos = await fetchTodos();
+    await this.props.fetchTodos();
     this.setState({
-      todos,
       loading: false
     });
   }
@@ -53,37 +50,23 @@ class ToDoList extends Component {
     }
     const addedTodo = {
       id: uuidv4(),
-      name: this.state.newTodo,
-      applied: false
+      name: this.state.newTodo
     };
-    this.setState({
-      todos: [...this.state.todos, addedTodo],
-      newTodo: ''
-    });
+    this.props.addTodo(addedTodo);
   }
 
   toggleTodo(id) {
-    const todos = this.state.todos.map(todo => {
-      if (todo.id === id) {
-        todo.applied = !todo.applied;
-      }
-      return todo;
-    });
-
-    this.setState({ todos });
+    this.props.toggleTodo(id);
   }
 
   removeTodo(id) {
-    const todos = this.state.todos.filter(todo => todo.id !== id);
-    this.setState({
-      todos
-    });
+    this.props.removeTodo(id);
   }
 
   render() {
     const companies = (
       <ContainerStyle>
-        {this.state.todos.map(todo => (
+        {this.props.todos.map(todo => (
           <ToDo
             toggleTodo={this.toggleTodo.bind(this, todo.id)}
             removeTodo={this.removeTodo.bind(this, todo.id)}
