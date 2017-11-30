@@ -10,7 +10,11 @@
 
 _Note: The following instructions are condensed and not very explanative. I highly encourage readers to visit the [official Redux docs](https://redux.js.org/), which are excellent and contain links to two free video series by the Redux creator, Dan Abramov._
 
+&nbsp;
+
 **Refer to the completed source code on the `redux` branch when stuck.**
+
+&nbsp;
 
 1. Install packages:
 
@@ -110,8 +114,11 @@ _Note: The following instructions are condensed and not very explanative. I high
     }
     ```
 
+&nbsp;
 
 This should mostly conclude the conversion to Redux; refer to the `redux` branch for completed source code which is working. There are some additional things I did not cover (using a thunk for the `FETCH_TODOS_REQUEST` action creator for instance), but this is simply a rapid intro to converting an app to Redux and there is much further research necessary to lock these concepts down.
+
+&nbsp;
 
 Lastly, here is an example flow comparison of the two versions of the app:
 

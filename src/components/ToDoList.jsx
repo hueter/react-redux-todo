@@ -5,6 +5,7 @@ import ToDo from './ToDo';
 import { fetchTodos } from '../services/api';
 import uuidv4 from 'uuid/v4';
 
+// styled components declarations
 const ContainerStyle = styled.div`
   width: 400px;
   margin: auto;
@@ -28,6 +29,8 @@ class ToDoList extends Component {
       loading: true,
       newTodo: ''
     };
+    // these functions are bound so that they update state of the parent
+    //  when passed down as props to child ToDo components
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -85,6 +88,7 @@ class ToDoList extends Component {
       <ContainerStyle>
         {this.state.todos.map(todo => (
           <ToDo
+            // these functions are bound here to lock the ID param to the method
             toggleTodo={this.toggleTodo.bind(this, todo.id)}
             removeTodo={this.removeTodo.bind(this, todo.id)}
             key={todo.id}

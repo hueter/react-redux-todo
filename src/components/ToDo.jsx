@@ -23,6 +23,7 @@ const XStyle = styled.div`
   }
 `;
 
+// ToDo is a stateless functional component and is therefore pure
 const ToDo = props => (
   <ListStyle applied={props.applied}>
     <input
