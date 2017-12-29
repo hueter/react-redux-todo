@@ -35,7 +35,7 @@ class ToDoList extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  async componentWillMount() {
+  async componentDidMount() {
     const todos = await fetchTodos();
     this.setState({
       todos,
