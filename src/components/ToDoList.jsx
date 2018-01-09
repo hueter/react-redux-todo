@@ -25,8 +25,7 @@ class ToDoList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: [],
-      loading: true,
+      loading: false,
       newTodo: ''
     };
     // these functions are bound so that they update state of the parent
@@ -35,13 +34,13 @@ class ToDoList extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  async componentDidMount() {
-    const todos = await fetchTodos();
-    this.setState({
-      todos,
-      loading: false
-    });
-  }
+  // async componentDidMount() {
+  //   const todos = await fetchTodos();
+  //   this.setState({
+  //     todos,
+  //     loading: false
+  //   });
+  // }
 
   handleChange(e) {
     this.setState({
@@ -60,33 +59,23 @@ class ToDoList extends Component {
       applied: false
     };
     this.setState({
-      todos: [...this.state.todos, addedTodo],
       newTodo: ''
     });
+    this.props.addTodo(addedTodo);
   }
 
   toggleTodo(id) {
-    const todos = this.state.todos.map(todo => {
-      if (todo.id === id) {
-        todo.applied = !todo.applied;
-      }
-      return todo;
-    });
-
-    this.setState({ todos });
+    this.props.toggleTodo(id);
   }
 
   removeTodo(id) {
-    const todos = this.state.todos.filter(todo => todo.id !== id);
-    this.setState({
-      todos
-    });
+    this.props.removeTodo(id);
   }
 
   render() {
     const companies = (
       <ContainerStyle>
-        {this.state.todos.map(todo => (
+        {this.props.todos.map(todo => (
           <ToDo
             // these functions are bound here to lock the ID param to the method
             toggleTodo={this.toggleTodo.bind(this, todo.id)}

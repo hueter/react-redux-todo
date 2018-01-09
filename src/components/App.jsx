@@ -1,6 +1,6 @@
 import React from 'react';
-import ToDoList from './ToDoList';
+import ToDoListContainer from '../containers/ToDoListContainer';
 
-const App = (props) => <ToDoList />;
+const App = (props) => <ToDoListContainer />;
 
 export default App;
