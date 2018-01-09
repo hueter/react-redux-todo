@@ -26,15 +26,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ToDoList);
-
-// function connect(mapStateToProps, mapDispatchToProps) {
-//   const componentProps = mapStateToProps(store.getState());
-//   const dispatchProps = mapDispatchToProps(store.dispatch);
-
-//   const props = {componentProps, dispatchProps};
-
-//   return function(Component) {
-//     return <Component {props} />
-// }
-
-// }

@@ -42,6 +42,12 @@ class ToDoList extends Component {
   //   });
   // }
 
+  componentWillReceiveProps(nextProps) {
+    console.log('RECEIVING PROPS FROM REDUX...');
+    console.log('current props', this.props);
+    console.log('next props', nextProps);
+  }
+
   handleChange(e) {
     this.setState({
       newTodo: e.target.value
