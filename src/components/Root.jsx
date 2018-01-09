@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import configureStore from '../store/configure';
 
-const store = configureStore();
+const store = configureStore(); 
 
 const Root = () => {
   return (
