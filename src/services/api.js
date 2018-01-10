@@ -6,8 +6,11 @@ import mockData from './data.json';
  */
 export function fetchTodos() {
   return new Promise(resolve => {
-    return setTimeout(() => {
-      return resolve(mockData.data);
-    }, Math.floor(Math.random() * (1000 - 300))) + 300;
+    // AXIOS OR FETCH NORMALLY
+    return (
+      setTimeout(() => {
+        return resolve(mockData.data);
+      }, Math.floor(Math.random() * (1000 - 300))) + 300
+    );
   });
 }

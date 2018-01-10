@@ -1,7 +1,15 @@
-import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO } from './actions';
+import {
+  ADD_TODO,
+  REMOVE_TODO,
+  TOGGLE_TODO,
+  FETCH_TODOS_REQUEST,
+  FETCH_TODOS_SUCCESS,
+  FETCH_TODOS_FAIL
+} from './actions';
 
 const DEFAULT_STATE = {
-  todos: []
+  todos: [],
+  loading: true
 };
 
 export const todos = (state = DEFAULT_STATE, action) => {
@@ -23,6 +31,13 @@ export const todos = (state = DEFAULT_STATE, action) => {
       });
       return { ...state, todos: newTodos };
     }
+    case FETCH_TODOS_SUCCESS: {
+      return { ...state, todos: action.todos, loading: false };
+    }
+    case FETCH_TODOS_REQUEST: {
+      return { ...state, loading: true };
+    }
+    case FETCH_TODOS_FAIL:
     default:
       return { ...state };
   }

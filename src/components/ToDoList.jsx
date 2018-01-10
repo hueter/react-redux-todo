@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import AddToDo from './AddToDo';
 import ToDo from './ToDo';
-import { fetchTodos } from '../services/api';
 import uuidv4 from 'uuid/v4';
 
 // styled components declarations
@@ -25,7 +24,6 @@ class ToDoList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: false,
       newTodo: ''
     };
     // these functions are bound so that they update state of the parent
@@ -34,18 +32,9 @@ class ToDoList extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  // async componentDidMount() {
-  //   const todos = await fetchTodos();
-  //   this.setState({
-  //     todos,
-  //     loading: false
-  //   });
-  // }
-
-  componentWillReceiveProps(nextProps) {
-    console.log('RECEIVING PROPS FROM REDUX...');
-    console.log('current props', this.props);
-    console.log('next props', nextProps);
+  componentDidMount() {
+    // THIS DISPATCHES MY THUNK
+    this.props.fetchTodos();
   }
 
   handleChange(e) {
@@ -100,7 +89,7 @@ class ToDoList extends Component {
     return (
       <div>
         <HeaderStyle> Companies to Apply @ </HeaderStyle>
-        {this.state.loading ? (
+        {this.props.loading ? (
           <LoadingStyle> loading... </LoadingStyle>
         ) : (
           companies
