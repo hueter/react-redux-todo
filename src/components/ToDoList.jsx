@@ -30,14 +30,22 @@ class ToDoList extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  async componentWillMount() {
+  async componentDidMount() {
     // before component renders, fetch todos first
-    await this.props.fetchTodos();
+    try {
+      await this.props.fetchTodos();
+    } catch (e) {
+      return;
+    }
+
+    // if we get here successfully, we're done loading!
     this.setState({
       loading: false
     });
   }
 
+  // TODO: replace with getDerivedStateFromProps in 16.3
+  //  https://reactjs.org/docs/react-component.html#static-getderivedstatefromprops
   componentWillReceiveProps(nextProps) {
     // if we've added a todo, reset the newTodo form
     if (this.props.todos.length < nextProps.todos.length)

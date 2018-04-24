@@ -15,20 +15,14 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    fetchTodos: () => {
-      dispatch(fetchTodosRequest());
-    },
-    addTodo: todo => {
-      dispatch(addTodo(todo));
-    },
-    removeTodo: id => {
-      dispatch(removeTodo(id));
-    },
-    toggleTodo: id => {
-      dispatch(toggleTodo(id));
-    }
+    addTodo: todo => dispatch(addTodo(todo)),
+    fetchTodos: () => dispatch(fetchTodosRequest()),
+    removeTodo: id => dispatch(removeTodo(id)),
+    toggleTodo: id => dispatch(toggleTodo(id))
   };
 };
 
-const ToDoListContainer = connect(mapStateToProps, mapDispatchToProps)(ToDoList);
+const ToDoListContainer = connect(mapStateToProps, mapDispatchToProps)(
+  ToDoList
+);
 export default ToDoListContainer;

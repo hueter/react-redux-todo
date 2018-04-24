@@ -11,10 +11,15 @@ export function fetchTodosRequest() {
   // THUNK!
   return async dispatch => {
     try {
+      // call the API
       const todos = await fetchTodos();
-      return dispatch(fetchTodosSuccess(todos));
+      // dispatch a success action if it works
+      dispatch(fetchTodosSuccess(todos));
     } catch (err) {
-      return dispatch(fetchTodosFail(err));
+      // dispatch a fail action if API call fails
+      dispatch(fetchTodosFail(err));
+      // reject the promise
+      return Promise.reject();
     }
   };
 }
